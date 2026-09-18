@@ -10,8 +10,8 @@
 
 ```text
 k6 v2.2.0 (commit/00a9a1b7f5, go1.26.5, linux/amd64)
+```
 
-```markdown
 ## 1. Чанарын сценарионууд
 
 ### 1.1 Performance — `/cart/add`
