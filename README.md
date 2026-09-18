@@ -89,8 +89,27 @@ Availability SLO = 90%.
 
 Chaos туршилтаар серверийг 10 секунд зориудаар зогсоох тул онолын хувьд энэ нь 12 секундийн хугацааны error budget дотор байна.
 
-Measured p95 = 3.24 ms
+results/chaos.txt дотор:     checks_succeeded...: 80.27% 4655 out of 5799
 
-3.24 × 2 = 6.48 ms
+Амжилттай хүсэлт = 4655
+Нийт хүсэлт      = 5799
 
-SLO = p95 < 10 ms
+Availability: 4655 / 5799 × 100 = 80.27%
+
+Request-based error budget
+
+Availability SLO: 90%
+
+Allowed failures: 5799 × 0.10 = 579
+
+Actual: 5799 - 4655 = 1144 failed
+
+ → error budget exceeded
+
+ Яагаад 10 секунд outage мөртлөө request availability 90%-аас доош орж болох вэ?
+
+ Хэвийн үед /report: 200–400 ms хүлээлгэдэг. Гэтэл server унтарсан үед: connection refused маш хурдан буцна. Тэгэхээр server унтарсан 1 секундэд хэвийн 1 секундээс илүү олон failed request орж болно. Үүнээс гадна /pay өөрөө ойролцоогоор 5% 500 error гаргадаг. Иймээс: цагийн availability ба request-based availability хоёр заавал яг ижил гарахгүй.
+
+ Availability болон Reliability яагаад зэрэг FAIL болж болох вэ?
+
+ Availability болон payment reliability-г илүү сайн тусгаарлахын тулд availability-г dedicated health endpoint эсвэл transport/service reachability хэмжүүрээр, харин /pay-ийн HTTP 500 алдааг reliability хэмжүүрээр тусад нь хэмжиж болно.
